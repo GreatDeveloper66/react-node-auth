@@ -1,3 +1,4 @@
+# .gitignore (Root)
 .env
 node_modules
 package-lock.json
