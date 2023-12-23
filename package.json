@@ -1,0 +1,20 @@
+{
+  "name": "react-node-auth",
+  "version": "1.0.0",
+  "description": "- [Project Title and Description](#project-title-and-description)\r - [Table of Contents](#table-of-contents)\r - [Getting Started](#getting-started)\r - [Prerequisites](#prerequisites)\r - [Installation](#installation)\r - [Usage](#usage)\r - [Testing](#testing)\r - [Documentation](#documentation)\r - [Folder Structure](#folder-structure)\r - [Contributing](#contributing)\r - [License](#license)\r - [Acknowledgments](#acknowledgments)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "passport": "^0.7.0"
+  }
+}
