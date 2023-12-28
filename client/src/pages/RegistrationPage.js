@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { container, heading, form, label, input, button, linkText } from '../css/loginRegisterStyles';
 
 const RegistrationPage = () => {
     const [email, setEmail] = useState('');
@@ -21,31 +22,34 @@ const RegistrationPage = () => {
     };
     
     return (
-        <div>
-        <h2>Registration Page</h2>
-            <form>
-            <label>Email:</label>
+        <div style={container}>
+        <h2 style={heading}>Registration Page</h2>
+            <form style={form}>
+            <label style={label}>Email:</label>
             <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}      
+                onChange={(e) => setEmail(e.target.value)} 
+                style={input}     
             />
-            <label>Password:</label>
+            <label style={label}>Password:</label>
             <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}   
+                style={input}
             />
-            <label>Confirm Password:</label>
+            <label style={label}>Confirm Password:</label>
             <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}           
+                onChange={(e) => setPassword(e.target.value)}    
+                style={input}       
             />
-            <button onClick={handleRegistration}>Register</button>
+            <button onClick={handleRegistration} style={button}>Register</button>
             </form>
-        <p>
-            Already have an account? <Link to="/">Login here</Link>.
+        <p style={linkText}>
+            Already have an account? <Link to="/">Login here</Link>
         </p>
         </div>
     );
