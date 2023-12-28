@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const RegistrationPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuth();
-    const history = useHistory();
-    
+    const { register } = useAuth();
+    const navigate = useNavigate();
+
     const handleRegistration = async () => {
         try {
         // Implement authentication logic
         const userData = {}; // Replace with actual user data
         register(userData);
-            history.push('/dashboard');
+            navigate('/dashboard');
         } catch (error) {
         // Handle login error
             console.error(error);
@@ -47,7 +47,8 @@ const RegistrationPage = () => {
         <p>
             Already have an account? <Link to="/">Login here</Link>.
         </p>
-        <button onClick={handleRegister}>Register</button>
         </div>
     );
     }
+
+    export default RegistrationPage;
