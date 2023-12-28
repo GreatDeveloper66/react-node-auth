@@ -24,11 +24,40 @@ const LoginPage = () => {
   return (
     <div>
       <h2>Login Page</h2>
-      {/* Your login form goes here */}
+        <form>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}  
+          />
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleLogin}>Login</button>
+          <checkbox>Remember me</checkbox>
+        </form>
       <p>
         Don't have an account? <Link to="/register">Register here</Link>.
       </p>
-      <button onClick={handleLogin}>Login</button>
+      <form>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleLogin}>Login</button>
+      </form>
     </div>
   );
 };
