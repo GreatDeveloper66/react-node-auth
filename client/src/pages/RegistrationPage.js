@@ -12,9 +12,13 @@ const RegistrationPage = () => {
     const handleRegistration = async () => {
         try {
         // Implement authentication logic
-        const userData = {}; // Replace with actual user data
+        const userData = {
+            name: 'John Doe', // Replace with actual name
+            email,
+            password
+        }; // Replace with actual user data
         register(userData);
-            navigate('/dashboard');
+            navigate('/dashboard', {state: {user: userData, logOut: false}});
         } catch (error) {
         // Handle login error
             console.error(error);
