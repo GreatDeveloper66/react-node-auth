@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+/**
+ * The App function sets up the routing for different pages in a React application and wraps it with an
+ * authentication provider.
+ * @returns The App component is being returned.
+ */
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/dashboard" component={DashboardPage} />
+          <Route path="/register" component={RegistrationPage} />
+          {/* Add more routes as needed */}
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
