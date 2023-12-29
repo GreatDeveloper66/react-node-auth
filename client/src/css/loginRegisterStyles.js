@@ -72,3 +72,9 @@ export const container = {
     checkboxText,
     linkText,
   };
+
+  export const line = {
+    borderBottom: '1px solid #ddd',
+    width: '100%',
+    margin: '10px 0',
+  };

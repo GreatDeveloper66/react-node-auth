@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { container, heading, form, label, input, button, linkText } from '../css/loginRegisterStyles';
 
 const RegistrationPage = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,7 +19,7 @@ const RegistrationPage = () => {
         try {
         // Implement authentication logic
         const userData = {
-            name: 'John Doe', // Replace with actual name
+            name, // Replace with actual name
             email,
             password
         }; // Replace with actual user data
@@ -51,6 +52,11 @@ const RegistrationPage = () => {
         setConfirmPasswordValidation(validPassword);
     }
 
+    const handleNameChange = (e) => {
+        const nameValue = e.target.value;
+        setName(nameValue);
+    }
+
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     const validatePassword = (password) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,20}$/.test(password);
@@ -66,6 +72,13 @@ const RegistrationPage = () => {
         <div style={container}>
         <h2 style={heading}>Registration Page</h2>
             <form style={form}>
+            <label style={label}>Name:</label>
+            <input
+                type="text"
+                value={name}
+                onChange={(e) => handleNameChange(e)} 
+                style={input} 
+            />
             <label style={label}>Email:</label>
             <input
                 type="email"
