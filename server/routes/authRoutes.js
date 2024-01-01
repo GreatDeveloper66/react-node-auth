@@ -14,6 +14,8 @@ router.use(passport.session());
 
 
 
+/* The code `router.post('/register', authenticateLogin, async (req, res) => { ... })` defines a route
+handler for the POST request to the '/register' endpoint. */
 router.post('/register', authenticateLogin, async (req, res) => {
   const { name, email, password } = req.body;
   const newUser = new User({ name, email, password });
@@ -30,6 +32,8 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.status(200).json({ message: 'User logged in', user: req.user });
 });
 
+/* The code `router.get('/user/:id', isAuthenticated, async (req, res) => { ... })` defines a route
+handler for the GET request to the '/user/:id' endpoint. */
 router.get('/user/:id', isAuthenticated, async (req, res) => {
   try {
     if (req.isAuthenticated()) {
@@ -43,6 +47,8 @@ router.get('/user/:id', isAuthenticated, async (req, res) => {
   }
 });
 
+/* The code `router.post('/logout', (req, res, next) => { ... })` defines a route handler for the POST
+request to the '/logout' endpoint. */
 router.post('/logout', (req, res, next) => {
   req.logout(err => {
     if (err) {
@@ -51,6 +57,19 @@ router.post('/logout', (req, res, next) => {
     res.status(200).json({ message: 'User logged out' });
   });
 
+});
+
+router.delete('/user/:id', isAuthenticated, async (req, res) => {
+  try {
+    if (req.isAuthenticated()) {
+      const user = await User.findByIdAndDelete(req.params.id);
+      res.status(200).json({ message: 'User deleted', user });
+    } else {
+      res.status(401).json({ error: 'Unauthorized' });
+    }
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 });
 
 export default router;
