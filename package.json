@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "- [Project Title and Description](#project-title-and-description)\r - [Table of Contents](#table-of-contents)\r - [Getting Started](#getting-started)\r - [Prerequisites](#prerequisites)\r - [Installation](#installation)\r - [Usage](#usage)\r - [Testing](#testing)\r - [Documentation](#documentation)\r - [Folder Structure](#folder-structure)\r - [Contributing](#contributing)\r - [License](#license)\r - [Acknowledgments](#acknowledgments)",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
+    "build": "npm install && cd client && npm run build && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "devStart": "nodemon app.js"
@@ -19,6 +20,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
