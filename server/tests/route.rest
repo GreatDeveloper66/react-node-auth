@@ -2,9 +2,9 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "test",
-    "email": "test@test.com",
-    "password": "tes45%%TYiop88*h"
+    "name": "testSSS",
+    "email": "testSSS@test.com",
+    "password": "777***huyuiopSSS"
 }
 
 ###
@@ -13,6 +13,18 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "tes45%%TYiop88*h"
+    "email": "testSSS@test.com",
+    "password": "777***huyuiopSSS"
 }
+
+###
+GET http://localhost:5000/api/auth/user/6592e8fc1d91a6b414ce87f3
+
+
+###
+POST http://localhost:5000/api/auth/logout/
+
+###
+DELETE http://localhost:5000/api/auth/user/6592e8fc1d91a6b414ce87f3
+
+

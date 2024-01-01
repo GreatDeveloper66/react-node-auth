@@ -1,13 +1,12 @@
+import { config } from 'dotenv';
+config();
 import express from 'express';
 import { connect } from 'mongoose';
-import { config } from 'dotenv';
 import session from 'express-session';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import authRoutes from './server/routes/authRoutes.js';
-import { dir } from 'console';
 
-config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,12 +15,12 @@ const PORT = process.env.PORT || 5000;
 
 const DATABASE_URI = process.env.DATABASE_URI;
 
-connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+connect(DATABASE_URI)
     .then(() => console.log('Connected to database'))
     .catch(error => console.log(error));
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false
 }));    

@@ -6,7 +6,7 @@ const validateUser = (user) => {
   return validateEmail(email) && validatePassword(password);
 };
 
-const authenticateUser = (req, res, next) => {
+const authenticateLogin = (req, res, next) => {
   if (validateUser(req.body)) {
     next();
   } else {
@@ -14,4 +14,12 @@ const authenticateUser = (req, res, next) => {
   }
 };
 
-export default authenticateUser;
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+};
+
+export { authenticateLogin, isAuthenticated };
