@@ -2,9 +2,9 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "testSSSLMNdd",
-    "email": "testSSSLMNdd@testdd.com",
-    "password": "777***huyuiopSSSttv"
+    "name": "testSSSLMNdmn",
+    "email": "testSSSLMNdmn@testdd.com",
+    "password": "777***huyuiopSSSttvn"
 }
 
 ###
@@ -13,15 +13,15 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "testSSSLMNdd@testdd.com",
+    "email": "testSSSLMNdm@testdd.com",
     "password": "777***huyuiopSSSttv"
 }
 
 ###
-GET http://localhost:5000/api/auth/user/65931cc65fe5958a1240c8ee
+GET http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
 
 ###
-PATCH http://localhost:5000/api/auth/user/65931854330a895b3ef1c435
+PATCH http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
 Content-Type: application/json
 
 {
@@ -33,6 +33,6 @@ Content-Type: application/json
 POST http://localhost:5000/api/auth/logout/
 
 ###
-DELETE http://localhost:5000/api/auth/user/65931854330a895b3ef1c435
+DELETE http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
 
 
