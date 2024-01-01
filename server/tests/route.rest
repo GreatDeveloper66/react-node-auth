@@ -2,9 +2,9 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "testSSSL",
-    "email": "testSSSL@test.com",
-    "password": "777***huyuiopSSS"
+    "name": "testSSSLMN",
+    "email": "testSSSLMN@test.com",
+    "password": "777***huyuiopSSSttv"
 }
 
 ###
@@ -13,13 +13,21 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "testSSSL@test.com",
-    "password": "777***huyuiopSSS"
+    "email": "testSSSLMN@test.com",
+    "password": "777***huyuiopSSSttv"
 }
 
 ###
-GET http://localhost:5000/api/auth/user/65930f754bc884386199e20a
+GET http://localhost:5000/api/auth/user/65931854330a895b3ef1c435
 
+###
+PATCH http://localhost:5000/api/auth/user/65931854330a895b3ef1c435
+Content-Type: application/json
+
+{
+    "name": "testSSSLupdated",
+    "password": "777***huyuiopSSSupdated"
+}
 
 ###
 POST http://localhost:5000/api/auth/logout/
