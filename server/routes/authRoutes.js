@@ -1,4 +1,4 @@
-import express, { application } from 'express';
+import express from 'express';
 import User from '../models/User.js';
 import passport from '../middlewares/passport.js';
 import { authenticateLogin, isAuthenticated } from '../middlewares/userAuthentications.js';
