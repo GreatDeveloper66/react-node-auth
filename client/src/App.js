@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path='/sendCode' element={<SendCodePage />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
