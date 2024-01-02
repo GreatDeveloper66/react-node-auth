@@ -26,9 +26,9 @@ const LoginPage = () => {
     }
   };
 
-  const handleTwoFactorAuth = () => {
+  const handleSendCode = () => {
     // Implement two-factor authentication logic
-    navigate('/two-factor-auth');
+    navigate('/sendCode');
   };
 
   const handleThirdPartyLogin = () => {
@@ -73,7 +73,7 @@ const LoginPage = () => {
 
         {/* Two-Factor Authentication Section */}
         <div>
-          <button onClick={handleTwoFactorAuth} style={button}>Two-Factor Authentication</button>
+          <button onClick={handleSendCode} style={button}>Send Code</button>
         </div>
 
         {/* Line Separator */}
