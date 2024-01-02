@@ -1,9 +1,18 @@
+import { config } from 'dotenv';
+config();
 import express from 'express';
 import User from '../models/User.js';
 import passport from '../middlewares/passport.js';
 import { authenticateLogin, isAuthenticated } from '../middlewares/userAuthentications.js';
 
+
+//const sid = process.env.TWILIO_ACCOUNT_SID;
+//const token = process.env.TWILIO_AUTH_TOKEN;
 const router = express.Router();
+//const twilioClient = twilio(sid, token);
+
+
+
 
 // Apply passport middleware
 router.use(express.json());
@@ -93,6 +102,6 @@ router.patch('/user/:id', isAuthenticated, async (req, res) => {
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
-})
+});
 
 export default router;
