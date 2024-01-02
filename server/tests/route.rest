@@ -36,3 +36,9 @@ POST http://localhost:5000/api/auth/logout/
 DELETE http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
 
 
+###
+POST http://localhost:5000/api/twilio/send-code
+Content-Type: application/json
+{
+    "phoneNumber": "+13098575164"
+}
