@@ -1,0 +1,67 @@
+const AuthCalls = {
+    getUserInfo: async () => {
+        const response = await fetch('/api/auth/user/:id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data;
+    },
+    deleteUser: async () => {
+        const response = await fetch('/api/auth/user/:id', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data;
+    },
+    updateUser: async () => {
+        const response = await fetch('/api/auth/user/:id', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data;
+    },
+    logoutUser: async () => {
+        const response = await fetch('/api/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data;
+    },
+    loginUser: async () => {
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data;
+    },
+    registerUser: async () => {
+        const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data;
+    },
+
+    
+}
+
+//export fetch calls
+export default AuthCalls;
