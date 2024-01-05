@@ -30,7 +30,11 @@ router.post('/register', authenticateLogin, async (req, res) => {
   const newUser = new User({ name, email, password });
   try {
     const user = await newUser.save();
-    res.status(201).json(user);
+    if (!user) {
+      return res.status(404).json({ error: 'User not created' });
+    }
+    const userId = user._id;
+    res.status(201).json({ message: 'User created', userId });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
