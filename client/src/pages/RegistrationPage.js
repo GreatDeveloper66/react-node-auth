@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+//import { useAuth } from '../context/AuthContext';
+import { registerUser } from '../api_calls/authCalls';
 import { container, heading, form, label, input, button, linkText } from '../css/loginRegisterStyles';
 
 const RegistrationPage = () => {
@@ -11,8 +12,11 @@ const RegistrationPage = () => {
     const [passwordValidation, setPasswordValidation] = useState(null);
     const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(null);
     const [emailValidation, setEmailValidation] = useState(null);
-    const { register } = useAuth();
+    const [Error, setError] = useState('');
+    
+    //const { register } = useAuth();
     const navigate = useNavigate();
+    
 
 
     const handleRegistration = async () => {
@@ -23,13 +27,24 @@ const RegistrationPage = () => {
             email,
             password
         }; // Replace with actual user data
-            register(userData);
-            navigate('/dashboard', {state: {user: userData, logOut: false}});
+            //register(userData);
+            const userResponse = await registerUser(userData);
+            if (userResponse.code == 201) {
+                navigate('/dashboard');
+            } else if(userResponse.code == 400 && userResponse.error.contains('duplicate key error')) {
+                setError('Registration failed: User already exists');
+            } else if(userResponse.code == 500) {
+                setError('Registration failed: Server error');
+            } else {
+                setError('Registration failed: Bad request');
+            }
+                
         } catch (error) {
         // Handle login error
-            console.error(error);
+            console.error("Registration failed: " + error);
         }
-    };
+    }
+
 
     const handlePasswordChange = (e) => {
         const passwordValue = e.target.value;
@@ -107,6 +122,15 @@ const RegistrationPage = () => {
         <p style={linkText}>
             Already have an account? <Link to="/">Login here</Link>
         </p>
+        <div>
+            <p style={{ marginBottom: '16px' }}>Sign In with:</p>
+            <button style={button}>
+            Login with Google
+            </button>
+        </div>
+        <div style={error}>
+            <p>{Error}</p>
+        </div>
         </div>
     );
     }
