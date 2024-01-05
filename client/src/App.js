@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import RegistrationPage from './pages/RegistrationPage';
+import SendCodePage from './pages/SendCodePage';
 
 function App() {
   return (
