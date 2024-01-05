@@ -2,18 +2,27 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "testSSSLMNdmn",
-    "email": "testSSSLMNdmn@testdd.com",
-    "password": "777***huyuiopSSSttvn"
+    "name": "tessSSSLNodm",
+    "email": "tessSSSLNNodmn@testdds.com",
+    "password": "777***huyaiopSSStykn"
 }
 
+###
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "tessSSSLModm",
+    "email": "tessSSSLMNodmn@testdds.com",
+    "password": "777***huyuiopSSStykn"
+}
 ###
 
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "testSSSLMNdm@testdd.com",
+    "email": "doesntexist.com",
     "password": "777***huyuiopSSSttv"
 }
 
@@ -39,6 +48,17 @@ DELETE http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
 ###
 POST http://localhost:5000/api/twilio/send-code
 Content-Type: application/json
+
 {
     "phoneNumber": "+13098575164"
+}   
+
+
+###
+POST http://localhost:5000/api/twilio/verify-code
+Content-Type: application/json
+
+{
+    "phoneNumber": "+13098575164",
+    "code": "870235"
 }
