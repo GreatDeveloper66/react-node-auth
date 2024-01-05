@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { container, heading, form, label, input, button, checkboxContainer, checkbox, checkboxText, linkText, line } from '../css/loginRegisterStyles';
+import { loginUser } from '../api_calls/authCalls';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -14,12 +15,28 @@ const LoginPage = () => {
     try {
       // Implement authentication logic
       const userData = {
-        name: 'John Doe', // Replace with actual name
         email,
         password
-      } // Replace with actual user data
-      login(userData);
-      navigate('/dashboard', {state: {user: userData, logOut: false}}); // Pass user data to dashboard page
+      } 
+      
+      const userResponse = await loginUser(userData);
+      if (userResponse.code == 201) {
+        login(userResponse.user);
+        navigate('/dashboard');
+      } else {
+        console.error('Login failed');
+      }
+      
+      // Replace with actual user data
+      //await userStatus = loginUser(userData)
+      // if (userStatus === 'success') {
+      //   login(userData); // Pass user data to login function
+      //   navigate('/dashboard', {state: {user: userData, logOut: false}}); // Pass user data to dashboard page
+      // } else {
+      //   console.error('Login failed');
+      // }
+      
+      
     } catch (error) {
       // Handle login error
       console.error(error);
