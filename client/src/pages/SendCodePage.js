@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { TwilioContext } from '../context/TwilioContext';
 import { container, heading, form, label, input, button, checkboxContainer, checkbox, checkboxText, linkText, line } from '../css/loginRegisterStyles';
-    
+import { sendCode, verifyCode } from '../api_calls/twilioCalls';
 
 const SendCodePage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [code, setCode] = useState('');
 
-    const handleSendCode = () => {
-        
+    const handleSendCode = code => {
+        const response = sendCode(code);
+        console.log(response);  
     };
     <div style={container}>
         <h2 style={heading}>Verify Your Identity</h2>
