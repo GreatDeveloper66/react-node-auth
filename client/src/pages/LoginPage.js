@@ -1,14 +1,17 @@
 // LoginPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { container, heading, form, label, input, button, checkboxContainer, checkbox, checkboxText, linkText, line } from '../css/loginRegisterStyles';
-import { loginUser } from '../api_calls/authCalls';
+import { AppProvider } from '../context/AppContext';
+import { container, heading, form, label, input, button, checkboxContainer, checkbox, checkboxText, linkText, line, errorText } from '../css/loginRegisterStyles';
+import authCalls from '../api_calls/authCalls';
+const loginUser = authCalls.loginUser;
+const loginUserContext = AppProvider.loginUserContext;
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth();
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -21,25 +24,20 @@ const LoginPage = () => {
       
       const userResponse = await loginUser(userData);
       if (userResponse.code == 201) {
-        login(userResponse.user);
+        loginUserContext(userResponse.user._id);
         navigate('/dashboard');
+      } else if(userResponse.code == 400) {
+        setError('Login failed: Bad request');
+      } else if(userResponse.code == 500) {
+        setError('Login failed: Server error');
+      } else if(userResponse.code == 401) {
+        setError('Login failed: Unauthorized');
       } else {
-        console.error('Login failed');
-      }
-      
-      // Replace with actual user data
-      //await userStatus = loginUser(userData)
-      // if (userStatus === 'success') {
-      //   login(userData); // Pass user data to login function
-      //   navigate('/dashboard', {state: {user: userData, logOut: false}}); // Pass user data to dashboard page
-      // } else {
-      //   console.error('Login failed');
-      // }
-      
-      
+        setError('Login failed: Unknown error');
+      }  
     } catch (error) {
       // Handle login error
-      console.error(error);
+      setError('Login failed: ' + error);
     }
   };
 
@@ -107,6 +105,9 @@ const LoginPage = () => {
       <p style={linkText}>
         Don't have an account? <Link to="/register">Register here</Link>.
       </p>
+      <div style={errorText}>
+            <p>{error}</p>
+        </div>
     </div>
   );
 };

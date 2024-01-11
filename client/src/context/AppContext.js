@@ -1,11 +1,13 @@
+import bcrypt from 'bcryptjs';
 import { createContext, useState,useContext, useEffect } from 'react';
 const AppContext = createContext();
 const useAppContext = () => useContext(AppContext);
-import { bcrypt } from 'bcrypt';
-const key = new bcrypt();
-const salt = key.genSaltSync(10);
 
 const AppProvider = ({ children }) => {
+
+    
+    const salt = bcrypt.genSaltSync(10);
+    const key = bcrypt.hashSync('B4c0/\/', salt);
     
     const AppContextValue = {
         userLoggedIn: false,
@@ -13,25 +15,28 @@ const AppProvider = ({ children }) => {
         code: '',
     }
 
-    const loginUser = id => {
+    const loginUserContext = id => {
         AppContextValue.userLoggedIn = true;
         AppContextValue.userId = id;
     }
-    const logoutUser = () => {
+    const logOutUserContext = () => {
         AppContextValue.userLoggedIn = false;
         AppContextValue.userId = '';
     }
 
   
-    const storeCode = code => {
-        AppContextValue.code = key.hashSync(code, salt);
+    const storeUserCode = code => {
+        //AppContextValue.code = key.hashSync(code, salt);
+        AppContextValue.code = bcrypt.hashSync(code, salt);
     }
 
     /**
      * The function `retreiveCode` compares a given key with a hashed code stored in the
      * `AppContextValue.code` variable.
      */
-    const retreiveCode = () =>
+    const retreiveUserCode = () => {
+        return key.compareSync(key, AppContextValue.code);
+    }
     
 
     return (
@@ -40,5 +45,7 @@ const AppProvider = ({ children }) => {
         </AppContext.Provider>
     );
 }
+
+export { AppProvider, useAppContext };
 
 

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-//import { useAuth } from '../context/AuthContext';
-import { registerUser } from '../api_calls/authCalls';
-import { container, heading, form, label, input, button, linkText } from '../css/loginRegisterStyles';
+import { useAppContext } from '../context/AppContext';
+import authCalls from '../api_calls/authCalls';
+import { container, heading, form, label, input, button, linkText, errorText } from '../css/loginRegisterStyles';
+
+
+
 
 const RegistrationPage = () => {
     const [name, setName] = useState('');
@@ -12,10 +15,11 @@ const RegistrationPage = () => {
     const [passwordValidation, setPasswordValidation] = useState(null);
     const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(null);
     const [emailValidation, setEmailValidation] = useState(null);
-    const [Error, setError] = useState('');
-    
-    //const { register } = useAuth();
+    const [error, setError] = useState('');
     const navigate = useNavigate();
+    const registerUser = authCalls.registerUser;
+    const { storeUserContext } = useAppContext();
+
     
 
 
@@ -30,6 +34,7 @@ const RegistrationPage = () => {
             //register(userData);
             const userResponse = await registerUser(userData);
             if (userResponse.code == 201) {
+                storeUserContext(userResponse.user._id);
                 navigate('/dashboard');
             } else if(userResponse.code == 400 && userResponse.error.contains('duplicate key error')) {
                 setError('Registration failed: User already exists');
@@ -128,8 +133,8 @@ const RegistrationPage = () => {
             Login with Google
             </button>
         </div>
-        <div style={error}>
-            <p>{Error}</p>
+        <div style={errorText}>
+            <p>{error}</p>
         </div>
         </div>
     );

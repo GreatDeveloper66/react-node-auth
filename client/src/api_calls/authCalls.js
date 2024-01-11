@@ -19,12 +19,13 @@ const AuthCalls = {
         const data = await response.json();
         return data;
     },
-    updateUser: async () => {
+    updateUser: async (updatedUserBody) => {
         const response = await fetch('/api/auth/user/:id', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            }, 
+            body: JSON.stringify(updatedUserBody)
         });
         const data = await response.json();
         return data;
@@ -49,12 +50,13 @@ const AuthCalls = {
         const data = await response.json();
         return data;
     },
-    registerUser: async () => {
+    registerUser: async (userBody) => {
         const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(userBody)
         });
         const data = await response.json();
         return data;
@@ -63,5 +65,4 @@ const AuthCalls = {
     
 }
 
-//export fetch calls
 export default AuthCalls;

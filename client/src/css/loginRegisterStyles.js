@@ -59,6 +59,11 @@ export const container = {
   export const linkText = {
     marginTop: '16px',
   };
+
+  export const errorText = {
+    color: 'red',
+    fontSize: '14px'
+  }
   
   export default {
     container,
@@ -71,6 +76,7 @@ export const container = {
     checkbox,
     checkboxText,
     linkText,
+    errorText
   };
 
   export const line = {

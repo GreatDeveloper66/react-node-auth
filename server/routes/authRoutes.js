@@ -42,7 +42,7 @@ router.post('/register', authenticateLogin, async (req, res) => {
 
 // Apply passport middleware to the login route
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.status(200).json({ message: 'User logged in', user: req.user });
+  res.status(201).json({ message: 'User logged in', user: req.user });
 });
 
 /* The code `router.get('/user/:id', isAuthenticated, async (req, res) => { ... })` defines a route
