@@ -2,9 +2,19 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "tessSSSLNodm",
-    "email": "tessSSSLNNodmn@testdds.com",
-    "password": "777***huyaiopSSStykn"
+    "name": "tesstRightA",
+    "email": "testRightA@gmail.com",
+    "password": "777***fauyaiop"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "testRightA@gmail.com",
+    "password": "777***fauyaiop"
 }
 
 ###
@@ -25,9 +35,12 @@ Content-Type: application/json
     "email": "doesntexist.com",
     "password": "777***huyuiopSSSttv"
 }
-
 ###
-GET http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
+
+GET http://localhost:5000/api/auth/user/5a4686de63577e00a822e6e
+Headers:
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNDY4NmRlNjM1NzdlMDBhODIyZTZlIiwiaWF0IjoxNTE1MjU5NjQ2LCJleHAiOj
+Content-Type: application/json
 
 ###
 PATCH http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b

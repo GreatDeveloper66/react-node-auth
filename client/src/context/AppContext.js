@@ -1,44 +1,40 @@
 import bcrypt from 'bcryptjs';
-import { createContext, useState,useContext, useEffect } from 'react';
+import { createContext } from 'react';
+
 const AppContext = createContext();
-const useAppContext = () => useContext(AppContext);
+const useApp = () => useContext(AppContext);
 
 const AppProvider = ({ children }) => {
-
-    
-    const salt = bcrypt.genSaltSync(10);
-    const key = bcrypt.hashSync('B4c0/\/', salt);
-    
     const AppContextValue = {
-        userLoggedIn: false,
-        userId: '',
-        code: '',
-    }
-
-    const loginUserContext = id => {
-        AppContextValue.userLoggedIn = true;
-        AppContextValue.userId = id;
-    }
-    const logOutUserContext = () => {
-        AppContextValue.userLoggedIn = false;
-        AppContextValue.userId = '';
-    }
-
-  
-    const storeUserCode = code => {
-        //AppContextValue.code = key.hashSync(code, salt);
-        AppContextValue.code = bcrypt.hashSync(code, salt);
-    }
-
-    /**
-     * The function `retreiveCode` compares a given key with a hashed code stored in the
-     * `AppContextValue.code` variable.
-     */
-    const retreiveUserCode = () => {
-        return key.compareSync(key, AppContextValue.code);
-    }
-    
-
+        jwt: null,
+        code: null,
+        user: null,
+        loginUserContext: (jwt) => {
+            AppContextValue.jwt = jwt;
+        },
+        storeUserContext: (user) => {
+            AppContextValue.user = user;
+        },
+        storeCodeContext: (code) => {
+            AppContextValue.code = code;
+        },
+        verifyCodeContext: (code) => {
+            return AppContextValue.code === code;
+        },
+        logoutUserContext: () => {
+            AppContextValue.jwt = null;
+            AppContextValue.code = null;
+            AppContextValue.user = null;
+        },
+        hashPassword: (password) => {
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(password, salt);
+            return hash;
+        },
+        comparePassword: (password, hash) => {
+            return bcrypt.compareSync(password, hash);
+        }
+    };
     return (
         <AppContext.Provider value={AppContextValue}>
             {children}
@@ -46,6 +42,4 @@ const AppProvider = ({ children }) => {
     );
 }
 
-export { AppProvider, useAppContext };
-
-
+export { AppProvider, useApp };

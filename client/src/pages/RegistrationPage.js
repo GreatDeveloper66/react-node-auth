@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppContext } from '../context/AppContext';
+import { AppProvider } from '../context/AppContext';
 import authCalls from '../api_calls/authCalls';
 import { container, heading, form, label, input, button, linkText, errorText } from '../css/loginRegisterStyles';
-
+const storeUserContext = AppProvider.storeUserContext;
 
 
 
@@ -18,11 +18,7 @@ const RegistrationPage = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const registerUser = authCalls.registerUser;
-    const { storeUserContext } = useAppContext();
-
     
-
-
     const handleRegistration = async () => {
         try {
         // Implement authentication logic
@@ -34,7 +30,7 @@ const RegistrationPage = () => {
             //register(userData);
             const userResponse = await registerUser(userData);
             if (userResponse.code == 201) {
-                storeUserContext(userResponse.user._id);
+                storeUserContext(userResponse.user);
                 navigate('/dashboard');
             } else if(userResponse.code == 400 && userResponse.error.contains('duplicate key error')) {
                 setError('Registration failed: User already exists');

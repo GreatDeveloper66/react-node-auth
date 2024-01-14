@@ -40,27 +40,35 @@ router.post('/register', authenticateLogin, async (req, res) => {
   }
 });
 
-// Apply passport middleware to the login route
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.status(201).json({ message: 'User logged in', user: req.user });
+
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if(err){
+      return res.status(500).json({ error: 'Internal Server Error'});
+    }
+    if(!user){
+      return res.status(401).json({ error: 'Authentication failed', details: info.message });
+    }
+
+    const { userId, token } = user;
+    res.status(201).json({ message: 'User logged in', userId, token });
+  })(req, res, next);
 });
+
 
 /* The code `router.get('/user/:id', isAuthenticated, async (req, res) => { ... })` defines a route
 handler for the GET request to the '/user/:id' endpoint. */
 router.get('/user/:id', isAuthenticated, async (req, res) => {
   try {
-    if (req.isAuthenticated()) {
-      const user = await User.findById(req.params.id);
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      res.status(200).json(user);
-    } else {
-      res.status(401).json({ error: 'Unauthorized' });
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
-  } catch (error) {
+    res.status(200).json({ message: 'User found', user });
+  } catch {
     res.status(404).json({ error: error.message });
   }
+
 });
 
 /* The code `router.post('/logout', (req, res, next) => { ... })` defines a route handler for the POST
