@@ -85,35 +85,45 @@ router.post('/logout', (req, res, next) => {
 
 router.delete('/user/:id', isAuthenticated, async (req, res) => {
   try {
-    if (req.isAuthenticated()) {
-      const user = await User.findByIdAndDelete(req.params.id);
-      if(!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      res.status(200).json({ message: 'User deleted', user });
-    } else {
-      res.status(401).json({ error: 'Unauthorized' });
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
+    res.status(200).json({ message: 'User deleted', user });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 });
-
 
 router.patch('/user/:id', isAuthenticated, async (req, res) => {
   try {
-    if(req.isAuthenticated()) {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-      if(!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      res.status(200).json({ message: 'User updated', user });
-    } else {
-      res.status(401).json({ error: 'Unauthorized' });
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
+    const { name, email, password } = req.body;
+    if (name) {
+      user.name = name;
+    }
+    if (email) {
+      user.email = email;
+    }
+    if (password) {
+      user.password = password;
+    }
+    const newUser = await user.save();
+    if(!newUser) {
+      return res.status(404).json({ error: 'User not updated' });
+    }
+    res.status(200).json({ message: 'User updated', user });
+    
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 });
+
+  
+ 
+
 
 export default router;
