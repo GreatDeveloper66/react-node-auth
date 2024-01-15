@@ -1,22 +1,83 @@
+##
+# Register a new user
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "tesstRightA",
-    "email": "testRightA@gmail.com",
-    "password": "777***fauyaiop"
+    "name": "newUserZZZAB",
+    "email": "newUserZZZAB@gmail.com",
+    "password": "777**gfayaiop"
 }
 
 ###
-
+#login with non existing user should fail
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "testRightA@gmail.com",
+    "email": "doesntexist.com",
     "password": "777***fauyaiop"
 }
 
+###
+#login with wrong password should fail
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "newUserZZZ@gmail.com",
+    "password": "wrongpassword"
+}
+
+###
+#login with new user's email and password
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "newUserZZZAB@gmail.com",
+    "password": "777**gfayaiop"
+}
+
+###
+GET http://localhost:5000/api/auth/user/65a4a563f60aaa1780c669d5
+Headers:
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0OTkzM2U5NzkzZWQyOWEwNjVhZTYiLCJpYXQiOjE3MDUyODU5NzIsImV4cCI6MTcwNTI4OTU3Mn0.um8DRipQyYVjL1CR-IyZB3cjIeW5HroP8S_dCSuc-Bc
+
+###
+PATCH http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
+Content-Type: application/json
+
+{
+    "name": "newUserZZ@gmail.com",
+    "password": "777***huyuiopSSSupdatedg"
+}
+
+###
+PATCH http://localhost:5000/api/auth/user/65a4a563f60aaa1780c669d5
+Content-Type: application/json
+Headers:
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YTU2M2Y2MGFhYTE3ODBjNjY5ZDUiLCJpYXQiOjE3MDUyODk0MzQsImV4cCI6MTcwNTI5MzAzNH0.TNnYjbORK5RxaqNv6p8QMnkkrFpdR5NtVChPLECFQAg
+
+{
+    "name": "testSSSLupdatedg",
+    "password": "777***huyuiopSSSupdatedg"
+}
+
+
+
+###
+
+
+
+###
+DELETE http://localhost:5000/api/auth/user/65a4a32cfd076064f593979e
+
+###
+DELETE http://localhost:5000/api/auth/user/65a4a563f60aaa1780c669d5
+Content-Type: application/json
+Headers:
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YTU2M2Y2MGFhYTE3ODBjNjY5ZDUiLCJpYXQiOjE3MDUyODk0MzQsImV4cCI6MTcwNTI5MzAzNH0.TNnYjbORK5RxaqNv6p8QMnkkrFpdR5NtVChPLECFQAg
 ###
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
@@ -37,25 +98,14 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:5000/api/auth/user/5a4686de63577e00a822e6e
-Headers:
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNDY4NmRlNjM1NzdlMDBhODIyZTZlIiwiaWF0IjoxNTE1MjU5NjQ2LCJleHAiOj
-Content-Type: application/json
 
-###
-PATCH http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
-Content-Type: application/json
 
-{
-    "name": "testSSSLupdatedg",
-    "password": "777***huyuiopSSSupdatedg"
-}
+
 
 ###
 POST http://localhost:5000/api/auth/logout/
 
-###
-DELETE http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
+
 
 
 ###
