@@ -1,16 +1,16 @@
 import { config } from 'dotenv';
+import jwt from 'jsonwebtoken';
 config();
 import express from 'express';
 import User from '../models/User.js';
 import passport from '../middlewares/passport.js';
 import { authenticateLogin, isAuthenticated } from '../middlewares/userAuthentications.js';
 
-
 //const sid = process.env.TWILIO_ACCOUNT_SID;
 //const token = process.env.TWILIO_AUTH_TOKEN;
 const router = express.Router();
 //const twilioClient = twilio(sid, token);
-
+const secretKey = process.env.JWT_SECRET || 'A&&**^%$#@@!@#$%^&*()_+';
 
 
 
@@ -34,7 +34,8 @@ router.post('/register', authenticateLogin, async (req, res) => {
       return res.status(404).json({ error: 'User not created' });
     }
     const userId = user._id;
-    res.status(201).json({ message: 'User created', userId });
+    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
+    res.status(201).json({ message: 'User created', userId, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

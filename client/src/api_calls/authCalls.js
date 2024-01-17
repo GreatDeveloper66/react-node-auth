@@ -43,7 +43,7 @@ const AuthCalls = {
         const data = await response.json();
         return data;
     },
-    loginUser: async () => {
+    loginUser: async (userBody) => {
         const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {

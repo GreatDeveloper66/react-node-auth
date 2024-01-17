@@ -25,6 +25,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    code: {
+        type: String,
+        default: null
+    },
     createdAt: {
         type: Date,
         default: Date.now

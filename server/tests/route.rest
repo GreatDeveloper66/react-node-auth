@@ -4,9 +4,10 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "newUserZZZAB",
-    "email": "newUserZZZAB@gmail.com",
-    "password": "777**gfayaiop"
+    "name": "ashaffe",
+    "email": "ashaffe@gmail.com",
+    "password": "777**gfaeaiop",
+    "phoneNumber": "+13098575164"
 }
 
 ###
@@ -35,17 +36,17 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "newUserZZZAB@gmail.com",
-    "password": "777**gfayaiop"
+    "email": "ashaffe@gmail.com",
+    "password": "777**gfaeaiop"
 }
 
 ###
-GET http://localhost:5000/api/auth/user/65a4a563f60aaa1780c669d5
+GET http://localhost:5000/api/auth/user/65a4c31f945978ad28a15de0
 Headers:
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0OTkzM2U5NzkzZWQyOWEwNjVhZTYiLCJpYXQiOjE3MDUyODU5NzIsImV4cCI6MTcwNTI4OTU3Mn0.um8DRipQyYVjL1CR-IyZB3cjIeW5HroP8S_dCSuc-Bc
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YzMxZjk0NTk3OGFkMjhhMTVkZTAiLCJpYXQiOjE3MDUyOTcxOTksImV4cCI6MTcwNTMwMDc5OX0.oBMAtoIGD6MPGFQDGP8mFZ6Bz_2ELfi25IetbOQiogg
 
 ###
-PATCH http://localhost:5000/api/auth/user/65933cc63d4aea0e1cec9e8b
+PATCH http://localhost:5000/api/auth/user/65a4c31f945978ad28a15de0
 Content-Type: application/json
 
 {
@@ -54,19 +55,15 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:5000/api/auth/user/65a4a563f60aaa1780c669d5
+PATCH http://localhost:5000/api/auth/user/65a4c31f945978ad28a15de0
 Content-Type: application/json
 Headers:
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YTU2M2Y2MGFhYTE3ODBjNjY5ZDUiLCJpYXQiOjE3MDUyODk0MzQsImV4cCI6MTcwNTI5MzAzNH0.TNnYjbORK5RxaqNv6p8QMnkkrFpdR5NtVChPLECFQAg
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YzMxZjk0NTk3OGFkMjhhMTVkZTAiLCJpYXQiOjE3MDUyOTcxOTksImV4cCI6MTcwNTMwMDc5OX0.oBMAtoIGD6MPGFQDGP8mFZ6Bz_2ELfi25IetbOQiogg
 
 {
-    "name": "testSSSLupdatedg",
-    "password": "777***huyuiopSSSupdatedg"
+    "name": "testSSSLupdatedgggh",
+    "password": "777***huyuiopSSSupdatehhdg"
 }
-
-
-
-###
 
 
 
@@ -74,10 +71,10 @@ Headers:
 DELETE http://localhost:5000/api/auth/user/65a4a32cfd076064f593979e
 
 ###
-DELETE http://localhost:5000/api/auth/user/65a4a563f60aaa1780c669d5
+DELETE http://localhost:5000/api/auth/user/65a4c31f945978ad28a15de0
 Content-Type: application/json
 Headers:
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YTU2M2Y2MGFhYTE3ODBjNjY5ZDUiLCJpYXQiOjE3MDUyODk0MzQsImV4cCI6MTcwNTI5MzAzNH0.TNnYjbORK5RxaqNv6p8QMnkkrFpdR5NtVChPLECFQAg
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWE0YzMxZjk0NTk3OGFkMjhhMTVkZTAiLCJpYXQiOjE3MDUyOTcxOTksImV4cCI6MTcwNTMwMDc5OX0.oBMAtoIGD6MPGFQDGP8mFZ6Bz_2ELfi25IetbOQiogg
 ###
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
@@ -109,19 +106,18 @@ POST http://localhost:5000/api/auth/logout/
 
 
 ###
-POST http://localhost:5000/api/twilio/send-code
+POST http://localhost:5000/api/auth/send-code
 Content-Type: application/json
 
 {
-    "phoneNumber": "+13098575164"
-}   
-
+    "email": "ashaffe@gmail.com"
+}
 
 ###
-POST http://localhost:5000/api/twilio/verify-code
+POST http://localhost:5000/api/auth/verify-code
 Content-Type: application/json
 
 {
-    "phoneNumber": "+13098575164",
-    "code": "870235"
+    "email": "ashaffe@gmail.com",
+    "code": "225225"
 }
